@@ -1,0 +1,147 @@
+$width: 305px;
+$height: 290px;
+$picker-box-height: 220px;
+$picker-input-height: 42px;
+$header-h: 65px;
+$table-padding: 14px;
+$font-color: #384146;
+$default-color: #0093de; // Blue
+
+.ng-flat-monthpicker-wrapper {
+    display: inline-block;
+    position: relative;
+    * {
+        box-sizing: border-box;
+    }
+}
+
+.ng-flat-monthpicker {
+    margin-top: 10px;
+    width: $width;
+    position: absolute;
+    background-color: white;
+    z-index: 3000;
+    box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+    height: $height;
+
+    .picker-input-bar {
+        width: $width;
+        height: $picker-input-height;
+        display: inline-block;
+        overflow: auto;
+        white-space: nowrap;
+        margin: 0px auto;
+        background: #fffd114d;
+        padding: 5px;
+        border: 2px solid #e6e6e6;
+
+        button {
+            background-color: white; 
+            color: black;
+            padding: 5px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        label {
+            font-size: 12px;
+            color: $font-color;
+            font-weight: 400;
+            float: left;
+            padding: 5px;
+        }
+        .clear {
+            float: left;
+            border: 1px solid #fd675c;
+            &:hover {
+                background-color: #fd675c;
+                color: white;
+            }
+        }
+        .close-picker {
+            float: right;
+            border: 1px solid #569ff7;
+            &:hover {
+                background-color: #569ff7;
+                color: white;
+            }
+        }
+    }
+
+    .picker-box {
+        overflow: scroll;
+        height: $height - $picker-input-height - 10px;
+        table {
+            tbody {
+                padding-left: 10px;
+                border-bottom: lighten( grey, 30%) solid 1px;
+                display: block;
+                tr {
+                    height: ($width - (2 * $table-padding))/7;
+                    &.months-head {
+                        height: ($width - (2 * $table-padding))/7 + 8; // yo - lo
+                        .month-head {
+                            padding: 0;
+                            padding-bottom: $table-padding;
+                            border-bottom: 1px solid #d8d8d8;
+                            color: $font-color;
+                        }
+                    }
+                    &.months .month-item:hover {
+                        background-color: #e6e6e6;
+                        color: #393939!important;
+                    }
+
+                    td {
+                        width: ($width - (2 * $table-padding))/7;
+                        text-align: center;
+                        background-color: white;
+                        font-size: 12px;
+                        display: inline-block;
+                        cursor: default;
+                        color: $font-color;
+                        user-select: none;
+                        &.month-item {
+                            padding: 0;
+                            height: ($width - (2 * $table-padding))/7;
+                            line-height: ($width - (2 * $table-padding))/7;
+                            cursor: pointer;
+                            border-radius: ($width - (2 * $table-padding))/14;
+                            color: lighten($font-color, 15%);
+                            &.isSelected {
+                                background-color: #0093de;
+                                color: #f5f5f5!important;
+                            }
+                            &.isDisabled {
+                                cursor: default;
+                                color: lighten($font-color, 65%);
+                                &:hover {
+                                    color: lighten($font-color, 65%) !important;
+                                    background-color: transparent;
+                                }
+                            }
+                            &::first-letter {
+                                text-transform: uppercase;
+                            }
+                        }
+
+                        &.year-item {
+                            font-size: 14px;
+                            font-weight: 600;
+                            padding-right: 45px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.ng-flat-monthpicker-month-name::first-letter {
+    text-transform: uppercase;
+}

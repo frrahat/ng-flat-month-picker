@@ -1,0 +1,24 @@
+<div class="ng-flat-monthpicker" ng-show="pickerDisplayed">
+    <div class="picker-input-bar">
+        <button class="clear" ng-click="clear_picker()">Clear</button>
+        <button class="close-picker" ng-click="close_picker()">Done</button>
+        <label>
+            <input type="checkbox" ng-model="isRanged" ng-checked="isRanged"/>
+            Range Selection
+        </label>
+    </div>
+    <div class="picker-box">
+        <table ng-repeat="year in yearsList" id='{{calendarId}}_tbl_{{year}}'>
+            <tbody>
+                <tr class="months">
+                    <td class="year-item" rowspan="2"> {{year}} </td>
+                    <td class="month-item" ng-style="getStyle(year+month.short)" ng-click="selectMonth(year+month.short, $event)" ng-mouseenter="onMouseEnter(year+month.short)" ng-repeat="month in monthSlice1">{{month.name}}</td>
+                </tr>
+                <tr class="months">
+                    <td class="year-item"></td>
+                    <td class="month-item" ng-style="getStyle(year+month.short)" ng-click="selectMonth(year+month.short, $event)" ng-mouseenter="onMouseEnter(year+month.short)" ng-repeat="month in monthSlice2">{{month.name}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
