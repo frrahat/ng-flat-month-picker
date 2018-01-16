@@ -2,7 +2,7 @@
   "name": "ng-flat-monthpicker",
   "version": "1.0.0",
   "description": "Angular.js Monthpicker built with Moment.js",
-  "homepage": "https://github.com/frrahat/ng-flat-monthpicker#readme",
+  "homepage": "https://github.com/frrahat/ng-flat-month-picker#readme",
   "keywords": [
     "angular.js",
     "angular",
@@ -17,12 +17,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/frrahat/ng-flat-monthpicker.git"
+    "url": "git+https://github.com/frrahat/ng-flat-month-picker.git"
   },
   "author": "Fazle Rahat",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/frrahat/ng-flat-monthpicker/issues"
+    "url": "https://github.com/frrahat/ng-flat-month-picker/issues"
   },
   "devDependencies": {
     "angular": "^1.4.5",

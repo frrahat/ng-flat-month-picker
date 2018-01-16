@@ -7,6 +7,7 @@
      * @example <ng-flat-monthpicker></ng-flat-monthpicker>
      */
 
+    ngFlatMonthpickerDirective.$inject = ["$templateCache", "$compile", "$document", "$anchorScroll"];
     angular
         .module('ngFlatMonthpicker', [])
         .directive('ngFlatMonthpicker', ngFlatMonthpickerDirective);
@@ -274,3 +275,4 @@
     }
 
 })();
+angular.module("ngFlatMonthpicker").run(["$templateCache", function($templateCache) {$templateCache.put("monthpicker.html","<div class=\"ng-flat-monthpicker\" ng-show=\"pickerDisplayed\">\n    <div class=\"picker-input-bar\">\n        <button ng-class=\"[\'clear\', {\'opaque\' : isSelectionEmpty}]\" ng-click=\"clear_picker()\">Clear</button>\n        <button ng-class=\"[\'close-picker\', {\'opaque\' : isSelectionEmpty}]\" ng-click=\"close_picker()\">Done</button>\n        <label>\n            <input type=\"checkbox\" ng-model=\"isRanged\" ng-checked=\"isRanged\"/>\n            Range Selection\n        </label>\n    </div>\n    <div class=\"picker-box\">\n        <table ng-repeat=\"year in yearsList\" id=\'{{pickerId}}_tbl_{{year}}\'>\n            <tbody>\n                <tr class=\"months\">\n                    <td class=\"year-item\" rowspan=\"2\"> {{year}} </td>\n                    <td class=\"month-item\" ng-style=\"getStyle(year+month.short)\" ng-click=\"selectMonth(year+month.short, $event)\" ng-mouseenter=\"onMouseEnter(year+month.short)\" ng-repeat=\"month in monthSlice1\">{{month.name}}</td>\n                </tr>\n                <tr class=\"months\">\n                    <td class=\"year-item\"></td>\n                    <td class=\"month-item\" ng-style=\"getStyle(year+month.short)\" ng-click=\"selectMonth(year+month.short, $event)\" ng-mouseenter=\"onMouseEnter(year+month.short)\" ng-repeat=\"month in monthSlice2\">{{month.name}}</td>\n                </tr>\n            </tbody>\n        </table>\n    </div>\n</div>");}]);
