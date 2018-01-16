@@ -1,14 +1,14 @@
 <div class="ng-flat-monthpicker" ng-show="pickerDisplayed">
     <div class="picker-input-bar">
-        <button class="clear" ng-click="clear_picker()">Clear</button>
-        <button class="close-picker" ng-click="close_picker()">Done</button>
+        <button ng-class="['clear', {'opaque' : isSelectionEmpty}]" ng-click="clear_picker()">Clear</button>
+        <button ng-class="['close-picker', {'opaque' : isSelectionEmpty}]" ng-click="close_picker()">Done</button>
         <label>
             <input type="checkbox" ng-model="isRanged" ng-checked="isRanged"/>
             Range Selection
         </label>
     </div>
     <div class="picker-box">
-        <table ng-repeat="year in yearsList" id='{{calendarId}}_tbl_{{year}}'>
+        <table ng-repeat="year in yearsList" id='{{pickerId}}_tbl_{{year}}'>
             <tbody>
                 <tr class="months">
                     <td class="year-item" rowspan="2"> {{year}} </td>

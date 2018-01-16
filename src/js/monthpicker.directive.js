@@ -4,7 +4,7 @@
 
     /**
      * @desc Monthpicker directive
-     * @example <ng-monthpicker></ng-monthpicker>
+     * @example <ng-flat-monthpicker></ng-flat-monthpicker>
      */
 
     angular
@@ -16,8 +16,8 @@
             restrict: 'A',
             require: 'ngModel',
             scope: {
-                monthpickerConfig: '=?monthpickerConfig',
-                calendarId: '=?calendarId'
+                pickerConfig: '=?pickerConfig',
+                pickerId: '=?pickerId'
             },
             link: function (scope, element, attrs, ngModel) {
 
@@ -32,14 +32,14 @@
                 };
 
                 // Apply and init options
-                scope.monthpickerConfig = angular.extend(defaultConfig, scope.monthpickerConfig);
-                if (!angular.isDefined(scope.calendarId)) scope.calendarId = '';
+                scope.pickerConfig = angular.extend(defaultConfig, scope.pickerConfig);
+                if (!angular.isDefined(scope.pickerId)) scope.pickerId = '';
 
-                var endYear = moment().year() + scope.monthpickerConfig.futureYear;
+                var endYear = moment().year() + scope.pickerConfig.futureYear;
 
                 //years list
                 scope.yearsList = [];
-                for (var i = scope.monthpickerConfig.startYear; i <= endYear; i++) {
+                for (var i = scope.pickerConfig.startYear; i <= endYear; i++) {
                     scope.yearsList.push(i);
                 }
 
@@ -57,12 +57,15 @@
 
                 var selectedMonths = [];
 
-                scope.isRanged = scope.monthpickerConfig.isRanged;
+                scope.isRanged = scope.pickerConfig.isRanged;
                 var dragStart = null;
                 var dragEnd = null;
                 var monthInFocus = null;
 
+                scope.isSelectionEmpty = true;
+
                 scope.selectMonth = function (month, $event) {
+                    scope.isSelectionEmpty = false;
                     if (scope.isRanged) {
                         _onDragOnOff(month);
                         return;
@@ -151,28 +154,17 @@
                         var prevMonth = +month - 1;
                         if(prevMonth % 100 == 0) prevMonth -= 88;
 
-                        var neighborCount = 0;
-
                         if(_isSelected(String(prevMonth))) {
                             style = angular.extend(style, {
                                 'border-top-left-radius' : '0px',
                                 'border-bottom-left-radius' : '0px'
                             });
-                            neighborCount++;
                         }
 
                         if(_isSelected(String(nextMonth))) {
                             style = angular.extend(style, {
                                 'border-top-right-radius' : '0px',
                                 'border-bottom-right-radius' : '0px'
-                            });
-                            neighborCount++;
-                        }
-
-                        if(neighborCount == 1) {
-                            style = angular.extend(style, {
-                                'background-color' : '#569ff7',
-                                'color' : '#fff'
                             });
                         }
 
@@ -188,6 +180,7 @@
 
                 scope.clear_picker = function () {
                     selectedMonths.length = 0;
+                    scope.isSelectionEmpty = true;
                 }
 
                 function _onDragOnOff(month) {
@@ -221,7 +214,6 @@
                     monthInFocus = month;
                 }
 
-
                 // Display
                 scope.pickerDisplayed = false;
 
@@ -230,7 +222,7 @@
                         scope.pickerDisplayed = true;
                         $document.on('click', onDocumentClick);
                     });
-                    var id = scope.calendarId + '_tbl_' + moment().year();
+                    var id = scope.pickerId + '_tbl_' + moment().year();
                     $anchorScroll(id);
                 });
 
@@ -257,7 +249,7 @@
                         }
                         prevMonth = curMonth;
 
-                        var forMattedMonth = moment(curMonth, 'YYYYMM').format(scope.monthpickerConfig.monthFormat);
+                        var forMattedMonth = moment(curMonth, 'YYYYMM').format(scope.pickerConfig.monthFormat);
                         formattedResult.push(forMattedMonth);
                     }
                     ngModel.$setViewValue(formattedResult);

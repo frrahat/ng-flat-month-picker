@@ -11,9 +11,10 @@
 
     function mainController ($scope) {
 
-        $scope.monthPickerConfig = {
-            allowFuture: false,
-            dateFormat: 'DD/MM/YYYY'
+        $scope.pickerConfig = {
+            monthFormat: 'MMM YYYY',
+            startYear: 2010,
+            futureYear: 20
         };
     }
 

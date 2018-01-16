@@ -46,6 +46,10 @@ $default-color: #0093de; // Blue
             transition-duration: 0.4s;
             cursor: pointer;
             border-radius: 5px;
+
+            &:focus {
+                outline: 0;
+            }
         }
         
         label {
@@ -55,6 +59,7 @@ $default-color: #0093de; // Blue
             float: left;
             padding: 5px;
         }
+
         .clear {
             float: left;
             border: 1px solid #fd675c;
@@ -63,6 +68,7 @@ $default-color: #0093de; // Blue
                 color: white;
             }
         }
+
         .close-picker {
             float: right;
             border: 1px solid #569ff7;
@@ -70,6 +76,10 @@ $default-color: #0093de; // Blue
                 background-color: #569ff7;
                 color: white;
             }
+        }
+
+        .opaque {
+            opacity: 0.5;
         }
     }
 

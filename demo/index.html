@@ -15,12 +15,12 @@
 
             <h1>Ng monthpicker demo</h1>
 
-            <button ng-flat-monthpicker ng-model="date2" type="button" name="button" config="monthpickerConfig">Pick a date</button>
+            <input type="text" ng-model="months_1" ng-flat-monthpicker picker-config="pickerConfig" picker-id="1">
             or
-            <input type="text" name="date" ng-flat-monthpicker monthpicker-config="monthpickerConfig" calendar-id="12" ng-model="date">
+            <button ng-flat-monthpicker ng-model="months_2" type="button" picker-config="pickerConfig" picker-id="2">Pick Months</button>
 
-            <p>Ng-model input: {{ date | json }}</p>
-            <p>Ng-model button: {{ date2 | json }}</p>
+            <p>Ng-model input: {{ months_1 | json }}</p>
+            <p>Ng-model button: {{ months_2 | json }}</p>
         </div>
 
         <!-- JS -->
