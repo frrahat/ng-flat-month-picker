@@ -3,7 +3,7 @@ ng-flat-monthpicker
 
 Lightweight Angular.js monthpicker directive based on the work of [RemiAWE/ng-flat-datepicker](https://github.com/RemiAWE/ng-flat-datepicker)
 
-![ng-flat-monthpicker screenshot](https://imgur.com/a/dgp1I)
+![ng-flat-monthpicker screenshot](https://github.com/frrahat/ng-flat-month-picker/blob/master/screenshots/ScreenShot2018-01-16.png)
 
 ## Run Demo Locally
 1. Run the following commands inside the project directory
