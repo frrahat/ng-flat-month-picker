@@ -1,7 +1,7 @@
 <div class="ng-flat-monthpicker" ng-show="pickerDisplayed">
     <div class="picker-input-bar">
         <button ng-class="['clear', {'opaque' : isSelectionEmpty}]" ng-click="clear_picker()">Clear</button>
-        <button ng-class="['close-picker', {'opaque' : isSelectionEmpty}]" ng-click="close_picker()">Done</button>
+        <button class="close-picker" ng-click="close_picker()">Done</button>
         <label>
             <input type="checkbox" ng-model="isRanged" ng-checked="isRanged"/>
             Range Selection
