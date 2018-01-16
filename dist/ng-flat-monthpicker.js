@@ -40,8 +40,8 @@
 
                 //years list
                 scope.yearsList = [];
-                for (var i = scope.pickerConfig.startYear; i <= endYear; i++) {
-                    scope.yearsList.push(i);
+                for (var year = scope.pickerConfig.startYear; year <= endYear; year++) {
+                    scope.yearsList.push(year);
                 }
 
                 //months list
@@ -227,11 +227,11 @@
                     $anchorScroll(id);
                 });
 
-                function onDocumentClick(e) {
+                function onDocumentClick() {
                     if (template !== e.target && !template[0].contains(e.target) && e.target !== element[0]) {
                         $document.off('click', onDocumentClick);
                         scope.$apply(function () {
-                            scope.pickerDisplayed = scope.showMonthsList = scope.showYearsList = false;
+                            scope.pickerDisplayed = false;
                         });
                     }
                 }
