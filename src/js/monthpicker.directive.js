@@ -11,7 +11,7 @@
         .module('ngFlatMonthpicker', [])
         .directive('ngFlatMonthpicker', ngFlatMonthpickerDirective);
 
-    function ngFlatMonthpickerDirective($templateCache, $compile, $document, $anchorScroll) {
+    function ngFlatMonthpickerDirective($templateCache, $compile, $document, $timeout) {
         return {
             restrict: 'A',
             require: 'ngModel',
@@ -61,6 +61,8 @@
                 var dragStart = null;
                 var dragEnd = null;
                 var monthInFocus = null;
+
+                var isScrollToCurrentYear = true;
 
                 scope.isSelectionEmpty = true;
 
@@ -217,16 +219,22 @@
                 // Display
                 scope.pickerDisplayed = false;
 
-                element.bind('click', function (e) {
+                element.bind('click', function () {
                     scope.$apply(function () {
                         scope.pickerDisplayed = true;
                         $document.on('click', onDocumentClick);
                     });
-                    var id = scope.pickerId + '_tbl_' + moment().year();
-                    $anchorScroll(id);
+
+                    if (isScrollToCurrentYear) {
+                        $timeout(function() {
+                            var id = scope.pickerId + '_tbl_' + moment().year();
+                            $document[0].getElementById(id).scrollIntoView();
+                        }, 0);
+                        isScrollToCurrentYear = false;
+                    }   
                 });
 
-                function onDocumentClick() {
+                function onDocumentClick(e) {
                     if (template !== e.target && !template[0].contains(e.target) && e.target !== element[0]) {
                         $document.off('click', onDocumentClick);
                         scope.$apply(function () {
